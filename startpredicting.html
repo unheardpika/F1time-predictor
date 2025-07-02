@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
+    <title>F1 Predictor</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#1b1818] dark group/design-root overflow-x-hidden" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#383333] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">F1 Predictor</h2>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Mean Error Allocation</h2>
+            <div class="flex flex-wrap gap-4 p-4">
+              <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#383333]">
+                <p class="text-white text-base font-medium leading-normal">Prediction Accuracy</p>
+                <p id="maeDisplay" class="text-white tracking-light text-2xl font-bold leading-tight">Not calculated yet</p>
+              </div>
+            </div>
+            <button
+              id="trainModelButton"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#161212] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              Train Model
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const trainButton = document.getElementById('trainModelButton');
+        if (trainButton) {
+          trainButton.addEventListener('click', function () {
+            alert('Button clicked!'); // Test alert
+            trainModel();
+          });
+        } else {
+          console.error('Train Model button not found.');
+        }
+      });
+
+      async function trainModel() {
+        try {
+          const response = await fetch('http://127.0.0.1:5000/train', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          if (!response.ok) {
+            const errorData = await response.json();
+            alert(errorData.error || 'Error training the model.');
+            return;
+          }
+          const data = await response.json();
+          if ('mean_absolute_error' in data) {
+            document.getElementById('maeDisplay').textContent = `${data.mean_absolute_error}`;
+          } else {
+            alert('Error training the model.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred while training the model.');
+        }
+      }
+    </script>
+  </body>
+</html>

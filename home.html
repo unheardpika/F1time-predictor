@@ -1,0 +1,111 @@
+<html>
+
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
+    <title>Homepage - F1 Lap Time Predictor</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#1a1a1a] dark group/design-root overflow-x-hidden" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Header -->
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#363636] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">F1 Lap Time Predictor</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="home.html">Home</a>
+              <a class="text-white text-sm font-medium leading-normal" href="predict.html">Predict</a>
+              <a class="text-white text-sm font-medium leading-normal" href="about.html">About</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Contact</a>
+            </div>
+            <div class="flex gap-2">
+              <button
+                id="signInButton"
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#141414] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Sign In</span>
+              </button>
+              <button
+                id="signUpButton"
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#363636] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Sign Up</span>
+              </button>
+              <button
+                id="profileButton"
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#363636] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Profile</span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="@container">
+              <div class="@[480px]:p-4">
+                <div
+                  class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4"
+                  style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuIdCTJiATebe4neChvNReNe3JnvGsCXkCK55JfaMG3iz31va-vIA5rckO0AbIjPUl71WnOKEu4nCadQ4dGLOJWAG1yDIuCem8AAXPNr4pwqmLIQZ0TCfHVT7MfZyeNoz_dv2KB8UQEdAm3eqd9-AK18OnKKYiKzxJWi6Q39BMLtzPEyULec8ef7h05fyJ9XepJ-LXelIeM1NHXuwDEKcDwreVOhLb61aipcoN_cpSegXAAHuN9WB8h6wYA7dWy6uOQhXltoElo7Om");'
+                >
+                  <div class="flex flex-col gap-2 text-center">
+                    <h1
+                      class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"
+                    >
+                      Predict F1 Lap Times with Precision
+                    </h1>
+                    <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      Our advanced model analyzes data from 2015-2023 races to predict driver performance based on various factors. Get insights into race outcomes and driver
+                      strategies.
+                    </h2>
+                  </div>
+                  <button
+                    id="startPredictingButton"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#141414] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]"
+                  >
+                    <span class="truncate">Start Predicting</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // Redirect to Sign In page
+      document.getElementById("signInButton").addEventListener("click", () => {
+        window.location.href = "signin.html"; // Redirects to signin.html
+      });
+
+      // Redirect to Sign Up page
+      document.getElementById("signUpButton").addEventListener("click", () => {
+        window.location.href = "signup.html"; // Redirects to signup.html
+      });
+
+      // Redirect to Profile page
+      document.getElementById("profileButton").addEventListener("click", () => {
+        window.location.href = "profile.html"; // Redirects to profile.html
+      });
+
+      // Handle "Start Predicting" button
+      document.getElementById("startPredictingButton").addEventListener("click", () => {
+        window.location.href = "startpredicting.html"; // Redirects to startpredicting.html
+      });
+      
+    </script>
+  </body>
+</html>
